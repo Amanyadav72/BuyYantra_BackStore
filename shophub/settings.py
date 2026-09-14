@@ -76,7 +76,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_THROTTLE_RATES': {
         'anon': '500/day',       # Unauthenticated requests
-        'user': '1000/day',      # Authenticated requests
+        'user': '2000/day',      # Authenticated requests
     },
     # Standardized Response Handler
     'EXCEPTION_HANDLER': 'products.exceptions.custom_exception_handler',
