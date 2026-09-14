@@ -195,9 +195,8 @@ DATABASES = {
         "CONN_HEALTH_CHECKS": True,
 
         "OPTIONS": {
-            "connect_timeout": int(
-                os.getenv("DB_CONNECT_TIMEOUT", "5")
-            ),
+            "connect_timeout": int(os.getenv("DB_CONNECT_TIMEOUT", "5")),
+            "sslmode": "require",
         },
     }
 }
