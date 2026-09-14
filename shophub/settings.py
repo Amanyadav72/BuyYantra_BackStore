@@ -233,7 +233,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Cloudflare R2
+# Cloudflare R2 Object Storage Configuration(Bucket) for Media Files
 AWS_ACCESS_KEY_ID = os.getenv("R2_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY")
 
