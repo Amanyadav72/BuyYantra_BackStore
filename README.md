@@ -1,4 +1,4 @@
-# 🛍️ BuyYantra — Backend (ShopHub API)
+# 🛍️ BuyYantra — Backend
 
 **A production-grade, hybrid-auth e-commerce backend built with Django & Django REST Framework.**
 
