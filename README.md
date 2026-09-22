@@ -14,6 +14,8 @@ Django REST API that powers the **BuyYantra** e-commerce platform — product ca
 </p>
 
 <p align="left">
+  🔗 <strong>Live API Schema:</strong> <a href="https://api.systemizer.site/api/docs">api.systemizer.site</a>
+  &nbsp;·&nbsp;
   🔗 <strong>Live API:</strong> <a href="https://api.systemizer.site/">api.systemizer.site</a>
   &nbsp;·&nbsp;
   🖥️ <strong>Live App:</strong> <a href="https://buyyantra.systemizer.site/">buyyantra.systemizer.site</a>
