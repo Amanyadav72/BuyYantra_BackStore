@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 class ProductListView(ListView):
     model = Product
@@ -88,18 +88,29 @@ class MyProductListView(SellerRequiredMixin, ListView):
         return Product.objects.by_owner(self.request.user).prefetch_related("categories")
 
 
-class ProductCreateView(SellerRequiredMixin, CreateView):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = "products/product_Form.html"
-    success_url = reverse_lazy("my_products")
+    success_url = reverse_lazy("product_form")
+    permission_required = "products.add_product"
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["instance"] = Product(owner=self.request.user)
+        return kwargs
 
     def form_valid(self, form):
-        # 1. Attach the logged-in user to the product
-        form.instance.owner = self.request.user
+        try:
+            form.instance.full_clean()
+        except ValidationError as exc:
+            for field, errors in exc.message_dict.items():
+                for error in errors:
+                    form.add_error(field, error)
+            return self.form_invalid(form)
 
         response = super().form_valid(form)
-        messages.success(self.request, "Product created succesfully.")
+        messages.success(self.request, "Product created successfully.")
         return response
 
 
